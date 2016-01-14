@@ -56,7 +56,7 @@
     // Retrieve data
 	echo 'Attempting Database Information Retrieval';
     $sql_select = "SELECT * FROM user";
-    $stmt = $conn->query($sql_select);
+    $stmt = $oConnection->query($sql_select);
     $users = $stmt->fetchAll();
     if(count($users) > 0) {
         echo "<h2>Registered users:</h2>";
