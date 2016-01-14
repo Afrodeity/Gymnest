@@ -25,9 +25,10 @@
 </form>
 <?php
     // DB connection info
+	echo 'entering PHP segment';
     require_once 'config.php';
-    //using the values you retrieved earlier from the Azure Portal.
-    // Connect to database.
+	echo 'config probably found maybe';
+    // Connect to database
     try {
 		$oConnection = new PDO('mysql:host='.$sHost.'dbname='.$sDb, $sUsername, $sPassword);
         $oConnection->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
@@ -43,8 +44,7 @@
 			$username = $_POST['username'];
 			$password = $_POST['password'];
 			// Insert data
-			$sql_insert = "INSERT INTO user (username, password)
-					   VALUES (?,?)";
+			$sql_insert = "INSERT INTO user (username, password) VALUES (?,?)";
 			$stmt = $oConnection->prepare($sql_insert);
 			$stmt->bindValue(1, $username);
 			$stmt->bindValue(2, $password);
