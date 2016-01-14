@@ -31,6 +31,7 @@
     try {
 		$oConnection = new PDO('mysql:host='.$sHost.'dbname='.$sDb, $sUsername, $sPassword);
         $oConnection->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+		echo 'success';
     }
     catch(Exception $e){
 		echo 'FAILURE TO CONNECT TO DATABASE';
@@ -44,7 +45,7 @@
 			// Insert data
 			$sql_insert = "INSERT INTO user (username, password)
 					   VALUES (?,?)";
-			$stmt = $conn->prepare($sql_insert);
+			$stmt = $oConnection->prepare($sql_insert);
 			$stmt->bindValue(1, $username);
 			$stmt->bindValue(2, $password);
 			$stmt->execute();
