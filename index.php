@@ -19,8 +19,8 @@
 <h1>Open Beta Registration</h1>
 <p>Choose a username and password, then click <strong>Submit</strong> to register.</p>
 <form method="post" action="index.php" enctype="multipart/form-data" >
-      Name  <input type="text" name="username" id="username"/></br>
-      Email <input type="text" name="password" id="password"/></br>
+      Username  <input type="text" name="username" id="username"/></br>
+      Password <input type="text" name="password" id="password"/></br>
       <input type="submit" name="submit" value="Submit" />
 </form>
 <?php
@@ -33,32 +33,33 @@
         $oConnection->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
     }
     catch(Exception $e){
+		echo 'FAILURE TO CONNECT TO DATABASE';
         die(var_dump($e));
     }
     // Insert registration info
     if(!empty($_POST)) {
-    try {
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-        // Insert data
-        $sql_insert = "INSERT INTO user (username, password)
-                   VALUES (?,?)";
-        $stmt = $conn->prepare($sql_insert);
-        $stmt->bindValue(1, $username);
-        $stmt->bindValue(2, $password);
-        $stmt->execute();
-    }
-    catch(Exception $e) {
-        die(var_dump($e));
-    }
+		try {
+			$username = $_POST['username'];
+			$password = $_POST['password'];
+			// Insert data
+			$sql_insert = "INSERT INTO user (username, password)
+					   VALUES (?,?)";
+			$stmt = $conn->prepare($sql_insert);
+			$stmt->bindValue(1, $username);
+			$stmt->bindValue(2, $password);
+			$stmt->execute();
+		} catch(Exception $e) {
+			die(var_dump($e));
+		}
     echo "<h3>Registration complete!</h3>";
     }
     // Retrieve data
+	echo 'Attempting Database Information Retrieval';
     $sql_select = "SELECT * FROM user";
     $stmt = $conn->query($sql_select);
     $users = $stmt->fetchAll();
     if(count($users) > 0) {
-        echo "<h2>People who are registered:</h2>";
+        echo "<h2>Registered users:</h2>";
         echo "<table>";
         echo "<tr><th>Username</th>";
         echo "<th>Password</th></tr>";
