@@ -26,7 +26,7 @@
 <?php
     // DB connection info
 	echo 'entering PHP segment';
-    require_once('config.php');
+    require_once('config.php') or die(mysql_error());
 	echo 'config.php accessed';
     // Connect to database
     try {
@@ -44,7 +44,7 @@
 			$username = $_POST['username'];
 			$password = $_POST['password'];
 			// Insert data
-			$sql_insert = "INSERT INTO user (username, password) VALUES (?,?)";
+			$sql_insert = "INSERT INTO user (username, password) VALUES ('$username','$password')";
 			$stmt = $oConnection->prepare($sql_insert);
 			$stmt->bindValue(1, $username);
 			$stmt->bindValue(2, $password);
