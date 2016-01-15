@@ -26,13 +26,13 @@
 <?php
     // DB connection info
 	echo 'entering PHP segment';
-    require_once 'config.php';
-	echo 'config probably found maybe';
+    require_once('config.php');
+	echo 'config.php accessed';
     // Connect to database
     try {
 		$oConnection = new PDO('mysql:host='.$sHost.'dbname='.$sDb, $sUsername, $sPassword);
         $oConnection->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-		echo 'success';
+		echo 'Connection Established';
     }
     catch(Exception $e){
 		echo 'FAILURE TO CONNECT TO DATABASE';
