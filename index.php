@@ -73,7 +73,7 @@
         echo "<th>Password</th></tr>";
         foreach($users as $user) {
 			echo "<tr><td>".$user['userID']."</td>";
-            echo "<tr><td>".$user['username']."</td>";
+            echo "<td>".$user['username']."</td>";
             echo "<td>".$user['password']."</td></tr>";
         }
         echo "</table>";
