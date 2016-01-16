@@ -23,14 +23,19 @@
       Password <input type="text" name="password" id="password"/></br>
       <input type="submit" name="submit" value="Submit" />
 </form>
+<?php error_reporting(-1); ?>
+<?php ini_set('display_errors', true); ?>
 <?php
     // DB connection info
 	echo 'entering PHP segment'."</br>";
+	define('__ROOT__', dirname(dirname(__FILE__)));
+	require_once __ROOT__.'/config.php';
+	/*
 	$sUsername = 'b3a4c86d06108d';
 	$sPassword = '366bf07b';
 	$sHost = 'eu-cdbr-azure-west-d.cloudapp.net';
 	$sDb = 'GymnestDB';
-	echo 'Connection values accessed'."</br>";
+	*/
     // Connect to database
     try {
 		$oConnection = new PDO('mysql:host='.$sHost.';dbname='.$sDb, $sUsername, $sPassword);
