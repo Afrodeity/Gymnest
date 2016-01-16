@@ -26,18 +26,24 @@
 <?php
     // DB connection info
 	echo 'entering PHP segment';
-    require_once('config.php') or die(mysql_error());
-	echo 'config.php accessed';
+    //require_once('config.php') or die(§error);
+	$sUsername = 'b3a4c86d06108d';
+	$sPassword = '366bf07b';
+	$sHost = 'eu-cdbr-azure-west-d.cloudapp.net';
+	$sDb = 'GymnestDB';
+	
+	echo 'Connection values accessed';
     // Connect to database
     try {
-		$oConnection = new PDO('mysql:host='.$sHost.'dbname='.$sDb, $sUsername, $sPassword);
-        $oConnection->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-		echo 'Connection Established';
+		$oConnection = new PDO('mysql:host='.$sHost.';dbname='.$sDb, $sUsername, $sPassword);
+        $oConnection->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );<
+		echo 'Connection Established!';
     }
     catch(Exception $e){
 		echo 'FAILURE TO CONNECT TO DATABASE';
         die(var_dump($e));
     }
+	/*
     // Insert registration info
     if(!empty($_POST)) {
 		try {
@@ -72,6 +78,7 @@
     } else {
         echo "<h3>No registered users exist.</h3>";
     }
+	*/
 ?>
 </body>
 </html>
