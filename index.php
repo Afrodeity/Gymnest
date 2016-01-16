@@ -25,15 +25,12 @@
 </form>
 <?php
     // DB connection info
-	echo 'entering PHP segment'."\r\n";
-    require 'DIR\config.php' or die(§error);
-	/*
+	echo 'entering PHP segment'."</br>";
 	$sUsername = 'b3a4c86d06108d';
 	$sPassword = '366bf07b';
 	$sHost = 'eu-cdbr-azure-west-d.cloudapp.net';
 	$sDb = 'GymnestDB';
 	echo 'Connection values accessed'."</br>";
-	*/
     // Connect to database
     try {
 		$oConnection = new PDO('mysql:host='.$sHost.';dbname='.$sDb, $sUsername, $sPassword);
