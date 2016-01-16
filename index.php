@@ -44,7 +44,7 @@
 		try {
 			$username = $_POST['username'];
 			$password = $_POST['password'];
-			if(isset($username) || isset($password)) { // Insert Data
+			if(trim($username)!='' && trim($password)!='') { // Insert Data
 				$sqlInsert = "INSERT INTO user (username, password) VALUES ('$username','$password')";
 				$stmt = $oConnection->prepare($sqlInsert);
 				$stmt->bindValue(1, $username);
