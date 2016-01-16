@@ -31,7 +31,7 @@
 	$sPassword = '366bf07b';
 	$sHost = 'eu-cdbr-azure-west-d.cloudapp.net';
 	$sDb = 'GymnestDB';
-	echo 'Connection values accessed'."\r\n";
+	echo 'Connection values accessed'."</br>";
     // Connect to database
     try {
 		$oConnection = new PDO('mysql:host='.$sHost.';dbname='.$sDb, $sUsername, $sPassword);
@@ -39,10 +39,10 @@
 		echo 'Connection Established!'."</br>";
     }
     catch(Exception $e){
-		echo 'FAILURE TO CONNECT TO DATABASE'."\r\n";
+		echo 'FAILURE TO CONNECT TO DATABASE'."</br>";
         die(var_dump($e));
     }
-	/*
+	
     // Insert registration info
     if(!empty($_POST)) {
 		try {
@@ -59,7 +59,7 @@
 		}
     echo "<h3>Registration complete!</h3>";
     }
-	*/
+	
     // Retrieve data
 	echo 'Attempting Database Information Retrieval';
     $sql_select = "SELECT * FROM user";
@@ -68,9 +68,11 @@
     if(count($users) > 0) {
         echo "<h2>Registered users:</h2>";
         echo "<table>";
-        echo "<tr><th>Username</th>";
+        echo "<tr><th>ID</th>";
+		echo "<th>Username</th>";
         echo "<th>Password</th></tr>";
         foreach($users as $user) {
+			echo "<tr><td>".$user['id']."</td>";
             echo "<tr><td>".$user['username']."</td>";
             echo "<td>".$user['password']."</td></tr>";
         }
