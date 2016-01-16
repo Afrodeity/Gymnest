@@ -58,7 +58,7 @@
 			die(var_dump($e));
 		}
     echo "<h3>Registration complete!</h3>";
-    }
+    } else echo "EMPTY INPUT</br>";
 	
     // Retrieve data
 	echo 'Attempting Database Information Retrieval';
