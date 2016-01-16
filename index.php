@@ -26,18 +26,11 @@
 <?php error_reporting(-1); ?>
 <?php ini_set('display_errors', true); ?>
 <?php
-    // DB connection info
-	echo 'entering PHP segment'."</br>";
+    // Retrieve Database Information	
 	define('__ROOT__', dirname(dirname(__FILE__)));
 	require_once __ROOT__.'/config.php';
-	/*
-	$sUsername = 'b3a4c86d06108d';
-	$sPassword = '366bf07b';
-	$sHost = 'eu-cdbr-azure-west-d.cloudapp.net';
-	$sDb = 'GymnestDB';
-	*/
-    // Connect to database
-    try {
+	echo 'config.php accessed'."</br>";
+    try { //Establish Database Connection
 		$oConnection = new PDO('mysql:host='.$sHost.';dbname='.$sDb, $sUsername, $sPassword);
         $oConnection->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 		echo 'Connection Established!'."</br>";
@@ -47,27 +40,28 @@
         die(var_dump($e));
     }
 	
-    // Insert registration info
-    if(!empty($_POST)) {
+    if(!empty($_POST)) { //Evaluate Registration Information
 		try {
 			$username = $_POST['username'];
 			$password = $_POST['password'];
-			// Insert data
-			$sql_insert = "INSERT INTO user (username, password) VALUES ('$username','$password')";
-			$stmt = $oConnection->prepare($sql_insert);
-			$stmt->bindValue(1, $username);
-			$stmt->bindValue(2, $password);
-			$stmt->execute();
+			if(isset($username) || isset($password)) { // Insert Data
+				$sqlInsert = "INSERT INTO user (username, password) VALUES ('$username','$password')";
+				$stmt = $oConnection->prepare($sqlInsert);
+				$stmt->bindValue(1, $username);
+				$stmt->bindValue(2, $password);
+				$stmt->execute();
 			echo "<h3>Registration Successful!</h3>";
+			} else {
+				echo "Invalid Input";
+			}
 		} catch(Exception $e) {
 			die(var_dump($e));
-		}   
-    } else echo "EMPTY INPUT</br>";
-	
+		}
+    }
     // Retrieve data
 	echo 'Attempting Database Information Retrieval';
-    $sql_select = "SELECT * FROM user";
-    $stmt = $oConnection->query($sql_select);
+    $sqlSelect = "SELECT * FROM user";
+    $stmt = $oConnection->query($sqlSelect);
     $users = $stmt->fetchAll();
     if(count($users) > 0) {
         echo "<h2>Registered users:</h2>";
