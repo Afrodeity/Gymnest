@@ -54,10 +54,10 @@
 			$stmt->bindValue(1, $username);
 			$stmt->bindValue(2, $password);
 			$stmt->execute();
+			echo "<h3>Registration Successful!</h3>";
 		} catch(Exception $e) {
 			die(var_dump($e));
-		}
-    echo "<h3>Registration complete!</h3>";
+		}   
     } else echo "EMPTY INPUT</br>";
 	
     // Retrieve data
