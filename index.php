@@ -25,24 +25,21 @@
 </form>
 <?php
     // DB connection info
-	echo 'entering PHP segment';
+	echo 'entering PHP segment'."\r\n";
     //require 'config.php' or die(§error);
 	$sUsername = 'b3a4c86d06108d';
 	$sPassword = '366bf07b';
 	$sHost = 'eu-cdbr-azure-west-d.cloudapp.net';
 	$sDb = 'GymnestDB';
-	echo 'Connection values accessed';
-	echo "\r\n";
+	echo 'Connection values accessed'."\r\n";
     // Connect to database
     try {
 		$oConnection = new PDO('mysql:host='.$sHost.';dbname='.$sDb, $sUsername, $sPassword);
         $oConnection->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-		echo 'Connection Established!';
-		echo "\r\n";
+		echo 'Connection Established!'."</br>";
     }
     catch(Exception $e){
-		echo 'FAILURE TO CONNECT TO DATABASE';
-		echo "\r\n";
+		echo 'FAILURE TO CONNECT TO DATABASE'."\r\n";
         die(var_dump($e));
     }
 	/*
