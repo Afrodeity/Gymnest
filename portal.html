@@ -1,0 +1,140 @@
+<?php
+	
+	ini_set('display_errors', true);
+	error_reporting(E_ALL);
+
+	include_once 'register.php';
+	include_once 'functions.php';
+	/*
+	start_session();
+	
+	if(check_login($mysqli) == true) {
+		header('Location: ./dashboard/dashboard.html');
+	}
+	*/
+?>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+
+<title>Portal</title>
+<link rel="stylesheet" type="text/css" href="./stylesheets/portal.css" />
+<script src="js/sha512.js"></script> 
+<script src="js/forms.js"></script>
+</head>
+
+<body>
+	<div class="error">
+		<?php if (!emtpy($error_msg)) { echo $error_msg;} //display errors?>
+	</div>
+	<div class="perspective">
+		<!--Hidden Tab Selector Radio Buttons-->
+		<input type="radio" name="tabs" id="top-tab">
+		<input type="radio" name="tabs" id="front-tab">
+		<input type="radio" name="tabs" id="bottom-tab"> 
+		<!-------------------------------------->
+		<div class="cube">
+			<div class="tab">
+				<form method="post" name="registration" action="<?php echo esc_url($_SERVER['PHP_SELF']); ?>"
+				onsubmit="return registration(this.form, this.form.username, this.form.password, this.form.confirmation)">
+					<div class="form-field">
+						<strong>Specifiy your account type</strong>
+						<div class="selection">
+							<input id="signup-gymnast" name="role" type="radio" required>
+							<label for="signup-gymnast">Gymnast</label>
+							
+							<input id="signup-trainer" name="role" type="radio" required>
+							<label for="signup-trainer">Trainer</label>
+							
+							<input id="signup-other" name="role" type="radio" required>	
+							<label for="signup-other">Other</label>	
+						</div>
+					</div>
+					<div class="form-field" id="signup">
+					  <label for="signup-first-name"><span class="hidden">First Name</span></label>
+					  <input id="signup-first-name" name="first-name" type="text" placeholder="First Name" required>
+					</div>
+
+					<div class="form-field">
+					  <label for="signup-last-name"><span class="hidden">Last Name</span></label>
+					  <input id="signup-last-name" name="last-name" type="text" placeholder="Last Name" required>
+					</div>
+
+					<div class="form-field">
+					  <label for="signup-username"><span>Username</span></label>
+					  <input id="signup-username" name="username" type="text" placeholder="Username" required>
+					</div>
+
+					<div class="form-field">
+					  <label for="signup-password"><span>Password</span></label>
+					  <input id="signup-password" name="password" type="password" placeholder="Password" required>
+					</div>
+					<div class="form-field">
+					  <input id="signup-confirmation" name="confirmation" type="password" placeholder="Confirm Password" required>
+					</div>
+					
+					<div class="form-field">
+						<input type="submit" name="return" value="Submit">
+					</div>
+			    </form>
+			  
+				<div class="bottom">
+					<label id="login" for="front-tab">Log In</label>
+				</div>
+ 
+			</div>
+			<!--------------------------------------------------------->
+			<div class="tab">
+				<!--Up Arrow-->
+				<div class="top">
+					<label id="signup" for="top-tab">Sign Up</label>
+				</div>
+				
+				<form method="post" action="login.php" enctype="multipart/form-data">
+					<div class="form-field">
+						<label for="signup-username">
+						<span class="hidden">Username</span>
+						</label>
+						<input id="signup-username" type="text"
+						placeholder="Username" required>
+					</div>
+					
+					<div class="form-field">
+						<label for="signup-password">
+						<span class="hidden">Password</span>
+						</label>
+						<input id="signup-password" type="password"
+						placeholder="Password" required>
+					</div>
+					<div class="form-field">
+					  <input type="button" value="Enter" onclick="login(this.form, this.form.password);">
+					</div>
+				</form>
+				<!--Down Arrow Button-->
+				<div class="bottom">
+					<label id="explore" for="bottom-tab">Explore</label>
+				</div>	
+			</div>
+			<!--------------------------------------------------------->
+			<div class="tab">
+				<!--Up Arrow Button-->
+				<div class="top">
+					<label id="login" for="front-tab">Log In</label>
+				</div>
+
+				<h2>Discover <strong>Gym</strong>Nest</h2>
+				<p><strong>Gym</strong>nest is a free online service for 
+				gymnasts and trainers, where you can manage your gymnasts, 
+				take attendance, organize & record tournaments and 
+				connect with other clubs.</p>
+				<p>Take a Tour</p>
+				<p>Features</p>
+				<p>Policies</p>
+				<p>FAQ</p>
+				<p>About</p>
+			</div>
+	    </div>
+	</div>
+</body>
+</html>

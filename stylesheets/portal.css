@@ -1,0 +1,145 @@
+body {
+  background: #473E6A;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+  color: #fff;
+  text-align: center; }
+
+input[name="tabs"] {
+  display: none; }
+
+.perspective {
+  perspective: 50em;
+  perspective-origin: 50% 100px;
+  width: auto;
+  margin: 0 auto; }
+
+.top, .bottom {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  width: 100%; }
+  .top label, .bottom label {
+    padding: 3px;
+    -webkit-user-select: none;
+    /* Chrome&Safari */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* IE10+ */
+    cursor: pointer;
+    width: 40px;
+    border-radius: 10px; }
+  .top label#signup, .bottom label#signup {
+    background: #06D6A0; }
+  .top label#login, .bottom label#login {
+    background: #1B9AAA; }
+  .top label#explore, .bottom label#explore {
+    background: #EF476F; }
+
+.bottom {
+  position: absolute;
+  bottom: 5px; }
+
+input[type=text], input[type=password] {
+  width: 90%; }
+
+#top-tab:checked ~ .cube {
+  transform: rotate(-90deg); }
+
+#front-tab:checked ~ .cube {
+  transform: rotateX(0deg); }
+
+#bottom-tab:checked ~ .cube {
+  transform: rotateX(90deg); }
+
+.cube {
+  position: relative;
+  margin: 80px auto 0;
+  width: 300px;
+  height: 390px;
+  transform-origin: 0 195px;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease-out; }
+
+.tab {
+  position: absolute;
+  width: 100%;
+  height: 100%; }
+  .tab .form-field {
+    font-size: 2.5vmin;
+    margin: auto;
+    padding: 3px;
+    font-weight: 300; }
+    .tab .form-field span {
+      padding: 3px;
+      padding-bottom: 0px;
+      padding-top: 2px;
+      margin-left: 12px;
+      background: #473E6A;
+      float: left;
+      border-top-left-radius: 0.5em;
+      border-top-right-radius: 0.5em;
+      text-align: left; }
+  .tab p {
+    font-size: 12px; }
+  .tab:nth-child(1) {
+    transform: rotateX(-270deg) translateY(-195px);
+    transform-origin: top;
+    background: #06D6A0; }
+  .tab:nth-child(2) {
+    transform: translateZ(195px);
+    background: #1B9AAA; }
+  .tab:nth-child(3) {
+    transform: rotateX(-90deg) translateY(195px);
+    transform-origin: bottom;
+    background: #EF476F; }
+
+#top-tab:checked ~ .cube {
+  transform: rotateX(-90deg); }
+
+#front-tab:checked ~ .cube {
+  transform: rotateX(0deg); }
+
+#bottom-tab:checked ~ .cube {
+  transform: rotateX(90deg); }
+
+/* Role Selector Radio Buttons */
+.selection {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin: auto;
+  display: table;
+  table-layout: fixed;
+  width: 90%;
+  list-style: none;
+  position: relative;
+  font-size: 2.5vmin; }
+  .selection input[name="role"] {
+    display: none; }
+    .selection input[name="role"]:checked + label {
+      background: #008260; }
+  .selection label {
+    -webkit-user-select: none;
+    /* Chrome&Safari */
+    -moz-user-select: none;
+    /* Firefox */
+    -ms-user-select: none;
+    /* IE10+ */
+    display: block;
+    padding: 10px 8px;
+    background: #5AE0BD;
+    font-size: 2.5vmin;
+    cursor: pointer;
+    position: relative;
+    display: table-cell;
+    border: 2px solid #06D6A0;
+    transition: background 0.1s linear; }
+    .selection label:hover {
+      background: #03AB7F;
+      transition: background 0.1s linear; }
+
+/* End Role Selection Buttons */
+
+/*# sourceMappingURL=portal.css.map */

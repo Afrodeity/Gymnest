@@ -31,8 +31,9 @@
 	require_once __ROOT__.'/config.php';
 	echo 'config.php accessed'."</br>";
     try { //Establish Database Connection
-		$oConnection = new PDO('mysql:host='.$sHost.';dbname='.$sDb, $sUsername, $sPassword);
-        $oConnection->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+		$connection = new PDO('mysql:host='.$dbHost.';dbname='.$db, $dbUsername, $dbPassword);
+		$connection->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+        $connection->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 		echo 'Connection Established!'."</br>";
     }
     catch(Exception $e){
@@ -46,11 +47,11 @@
 			$password = $_POST['password'];
 			if(trim($username)!='' && trim($password)!='') { // Insert Data
 				$sqlInsert = "INSERT INTO user (username, password) VALUES ('$username','$password')";
-				$stmt = $oConnection->prepare($sqlInsert);
+				$stmt = $connection->prepare($sqlInsert);
 				$stmt->bindValue(1, $username);
 				$stmt->bindValue(2, $password);
 				$stmt->execute();
-			echo "<h3>Registration Successful!</h3>";
+				echo "<h3>Registration Successful!</h3>";
 			} else {
 				echo "Invalid Input";
 			}
@@ -61,7 +62,7 @@
     // Retrieve data
 	echo 'Attempting Database Information Retrieval';
     $sqlSelect = "SELECT * FROM user";
-    $stmt = $oConnection->query($sqlSelect);
+    $stmt = $connection->query($sqlSelect);
     $users = $stmt->fetchAll();
     if(count($users) > 0) {
         echo "<h2>Registered users:</h2>";

@@ -1,0 +1,139 @@
+* {
+  margin: 0;
+  /*Reset Padding*/
+  padding: 0;
+  box-sizing: border-box; }
+
+body {
+  /*define font family here*/
+  background-color: #E0EEE0; }
+
+div#header {
+  width: 100%;
+  height: 50px;
+  color: #E0EEE0;
+  background-color: #473E6A;
+  /*Header Color*/
+  margin: 0 auto;
+  position: fixed;
+  top: 0px; }
+
+a {
+  outline: 0;
+  text-decoration: none; }
+
+.logo {
+  float: left;
+  margin-top: 7px;
+  margin-left: 11px;
+  user-select: none; }
+
+.logo a {
+  font-size: 1.5em;
+  color: #FFF; }
+
+.logo a:hover {
+  color: #C0CCC0; }
+
+div#container {
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 50px;
+  overflow: hidden; }
+
+.sidebar {
+  position: fixed;
+  width: 150px;
+  background-color: #473E6A;
+  /*#1D2F3F*/
+  float: left; }
+
+ul#nav li {
+  list-style: none; }
+
+ul#nav li a {
+  color: #E0EEE0;
+  display: block;
+  padding: 10px;
+  font-size: 1.1em;
+  border-bottom: 1px solid;
+  transition: 0.25s; }
+
+ul#nav li a:hover {
+  background-color: #101a23;
+  padding-left: 30px; }
+
+ul#nav li a.selected {
+  color: #fff;
+  background-color: #101a23;
+  padding-left: 30px; }
+
+li#nav {
+  list-style: none; }
+
+.content {
+  width: auto;
+  margin-left: 150px;
+  /*Equal to sidebar width*/
+  height: auto;
+  color: #1D2F3F;
+  background-color: #E0EEE0;
+  padding: 10px; }
+
+div#box {
+  float: left;
+  width: 300px; }
+
+div#box .label {
+  font-size: 0.8em;
+  text-shadow: 0px 1px #111;
+  color: #fff;
+  background-color: #1D2F3F;
+  padding: 5px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  box-shadow: 0px -4px #458F8B; }
+
+div#box .inside {
+  padding: 10px;
+  background-color: #fff;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px; }
+
+/*-----------------------------------*/
+@media only screen and (max-width: 320px) {
+  	/*
+  	.menu {
+      position: relative;
+      display: inline-block;
+  	}
+  	*/
+  input#menu {
+    background: #3498db;
+    background-image: linear-gradient(to bottom, #3498db, #041e2e);
+    border-radius: 12px;
+    color: #ffffff;
+    padding: 3px 9px 3px 9px;
+    text-decoration: none;
+    outline: none; }
+
+  .sidebar {
+    width: auto;
+    height: 100%;
+    margin-left: -315px;
+    font-size: 0.6em; }
+
+  .content {
+    margin: 0px;
+    padding: 0px;
+    padding-left: 5px; } }
+@media only screen and (min-width: 320px) {
+  input#menu {
+    display: none; }
+
+  /*Large Screen*/
+  .sidebar {
+    height: 100%;
+    margin-left: 0px; } }
+
+/*# sourceMappingURL=dashboard.css.map */
