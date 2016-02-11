@@ -4,4 +4,5 @@ config.php
 *.scss
 *.map
 *.scssc
+*.sass-cache
 stylesheets/portalbackup.txt
