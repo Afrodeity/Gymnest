@@ -46,7 +46,7 @@
 			$username = $_POST['username'];
 			$password = $_POST['password'];
 			if(trim($username)!='' && trim($password)!='') { // Insert Data
-				$sqlInsert = "INSERT INTO user (username, password) VALUES ('$username','$password')";
+				$sqlInsert = "INSERT INTO users (username, password) VALUES ('$username','$password')";
 				$stmt = $connection->prepare($sqlInsert);
 				$stmt->bindValue(1, $username);
 				$stmt->bindValue(2, $password);
@@ -61,7 +61,7 @@
     }
     // Retrieve data
 	echo 'Attempting Database Information Retrieval';
-    $sqlSelect = "SELECT * FROM user";
+    $sqlSelect = "SELECT * FROM users";
     $stmt = $connection->query($sqlSelect);
     $users = $stmt->fetchAll();
     if(count($users) > 0) {
