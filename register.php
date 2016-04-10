@@ -27,11 +27,11 @@ if (isset($_POST['username'], $_POST['password'])) {
 	if(empty($error_msg)) {
 		$password = password_hash($password, PASSWORD_DEFAULT);
 		//Insert new user to database
-		if($insert_stmt = $mysqli->prepare("INSERT INTO users (username, password) VALUES (?, ?, ?)")) {
+		if($insert_stmt = $mysqli->prepare("INSERT INTO users (username, password) VALUES (?, ?)")) {
 			$insert_stmt->bind_param('ss', $username, $password);
 			if(! $insert_stmt->execute()) {
 				//$error_msg .= "<p class="error">Error creating user. Please try again.</p>";
-				header('Location: ./error.php?err=Error creating user. Please try again.');
+				echo "Error creating user. Please try again.";
 				exit;
 			}
 		}
