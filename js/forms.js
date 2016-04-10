@@ -1,5 +1,5 @@
 function registration() {
-	var form = document.registration;
+	var form = document.forms["registration"];
 	//Validate Username
 	var re = /^\w+$/;
 	if(!re.test(form.username.value)) {
@@ -23,7 +23,7 @@ function registration() {
 }
 
 function login() {
-	var form = document.login;
+	var form = document.forms["login"];
 	//Validate Username
 	var re = /^\w+$/;
 	if(!re.test(form.username.value)) {
