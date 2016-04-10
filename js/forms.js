@@ -1,31 +1,30 @@
 function registration() {
-	
+	var form = document.registration
 	//Validate Username
 	var re = /^\w+$/;
-	var username = document.forms["registration"]["username"];
+	var username = form.username;
 	if(!re.test(username.value)) {
 		alert("Username may only contain letters, numbers and underscores");
 		username.focus();
 		return false;
 	}
 	//Validate Password
-	var password = document.forms["registration"]["password"];
+	var password = form.password;
 	if (password.value.length < 6) {
 		alert("Password must at least contain 6 characters");
 		password.focus();
 		return false;
 	}
 	//Validate Confirmation
-	if (password.value != document.forms["registration"]["confirmation"].value) {
+	if (password.value != form.confirmation.value) {
 		alert("Password does not match its confirmation");
 		password.focus();
 		return false;
 	}
-	return true;
 }
 
 function login() {
-	var form = document.forms["login"];
+	var form = document.login;
 	//Validate Username
 	var re = /^\w+$/;
 	if(!re.test(form.username.value)) {
@@ -39,5 +38,4 @@ function login() {
 		form.password.focus();
 		return false;
 	}
-	return true;
 }
