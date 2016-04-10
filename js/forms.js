@@ -1,7 +1,7 @@
 function registration() {
 	var form = document.registration;
 	//Validate Username
-	re = /^\w+$/;
+	var re = /^\w+$/;
 	if(!re.test(form.username.value)) {
 		alert("Username may only contain letters, numbers and underscores");
 		form.username.focus();
@@ -25,7 +25,7 @@ function registration() {
 function login() {
 	var form = document.login;
 	//Validate Username
-	re = /^\w+$/;
+	var re = /^\w+$/;
 	if(!re.test(form.username.value)) {
 		alert("Username may only contain letters, numbers and underscores");
 		form.username.focus();
