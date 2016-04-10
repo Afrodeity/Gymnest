@@ -1,10 +1,4 @@
 <?php
-	
-	ini_set('display_errors', true);
-	error_reporting(E_ALL);
-
-	include_once 'register.php';
-	include_once 'functions.php';
 	/*
 	start_session();
 	
@@ -20,7 +14,6 @@
 
 <title>Portal</title>
 <link rel="stylesheet" type="text/css" href="./stylesheets/portal.css" />
-<script src="js/sha512.js"></script> 
 <script src="js/forms.js"></script>
 </head>
 
@@ -36,8 +29,7 @@
 		<!-------------------------------------->
 		<div class="cube">
 			<div class="tab">
-				<form method="post" name="registration" action="<?php echo esc_url($_SERVER['PHP_SELF']); ?>"
-				onsubmit="return registration(this.form, this.form.username, this.form.password, this.form.confirmation)">
+				<form method="post" name="registration" action="register.php" onsubmit="return registration()">
 					<div class="form-field">
 						<strong>Specifiy your account type</strong>
 						<div class="selection">
@@ -91,7 +83,7 @@
 					<label id="signup" for="top-tab">Sign Up</label>
 				</div>
 				
-				<form method="post" action="login.php" enctype="multipart/form-data">
+				<form method="post" action="login.php" enctype="multipart/form-data" onsubmit="return login()">
 					<div class="form-field">
 						<label for="signup-username">
 						<span class="hidden">Username</span>
@@ -108,7 +100,7 @@
 						placeholder="Password" required>
 					</div>
 					<div class="form-field">
-					  <input type="button" value="Enter" onclick="login(this.form, this.form.password);">
+					  <input type="button" value="Enter">
 					</div>
 				</form>
 				<!--Down Arrow Button-->

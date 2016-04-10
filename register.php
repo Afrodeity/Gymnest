@@ -25,9 +25,7 @@ if (isset($_POST['username'], $_POST['p'])) {
 	$stmt->close();
 	
 	if(empty($error_msg)) {
-		//Create random hashID
-		$salt = hash('sha512', uniqid(mt_rand(1, mt_getrandmax()), true));
-		$password = hash('sha512', $password . $salt);
+		$password = password_hash($password, PASSWORD_DEFAULT);
 		//Insert new user to database
 		if($insert_stmt = $mysqli->prepare("INSERT INTO users (username, password, salt) VALUES (?, ?, ?)")) {
 			$insert_stmt->bind_param('sss', $username, $password, $salt);

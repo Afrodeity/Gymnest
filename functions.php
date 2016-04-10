@@ -25,25 +25,23 @@
 	}
 	
 	function login($username, $password, $mysqli) {
-		if($stmt = $mysqli->prepare("SELECT userID, username, password, salt FROM users WHERE username = ? LIMIT 1")) {
+		if($stmt = $mysqli->prepare("SELECT userID, username, password FROM users WHERE username = ? LIMIT 1")) {
 			$stmt->bind_param('s', $username); //bind $username as string(s)
 			$stmt->execute();
 			$stmt->store_result();
 			
-			$stmt->bind_result($userID, $username, $correct, $salt);
+			$stmt->bind_result($userID, $username, $correct);
 			$stmt->fetch(); //retrieve bound variables and assign to bind
-			$password = hash('sha512', $password . $salt);
+			$password = password_hash($password, PASSWORD_DEFAULT);
 			
 			if($stmt->num_rows == 1) {
 				if(checkbrute($userID, $mysqli) == false) {
-					if($password == $correct) {
+					if(password_verify($password, $hash)) {
 						//XSS protection - hide id, hash login_string
-						$user_browser = $_SERVER['HTTP_USER_AGENT'];
 						$userID = preg_replace("/[^0-9]+/", "", $userID);
 						$_SESSION['userID'] = $userID;
 						$username = preg_replace("/[a-zA-Z0-9_\-]+/",  "", $username);
 						$_SESSION['username'] = $username;
-						$_SESSION['login_string'] = hash('sha512', $password . $user_browser);
 						return true;
 					} //wrong password
 				} else { //record failed attempt
@@ -71,24 +69,22 @@
 		}
 	}
 	
-	function check_login($mysqli) {
+	function check_login($mysqli) { //login string == password
 		if (isset($_SESSION['userID'], $_SESSION['username'], $_SESSION['login_string'])) {
 			$userID = $_SESSION['userID'];
 			$login_string = $_SESSION['login_string'];
 			$username = $_SESSION['username'];
-			$user_browser = $_SERVER['HTTP_USER_AGENT'];
-			
+			//retrieve password
 			if($stmt = $mysqli->prepare("SELECT password FROM users WHERE userID = ? LIMIT 1")) {
 				$stmt->bind_param('i', $user_id);
 				$stmt->execute();
 				$stmt->store_result();
-	 
+				//process query
 				if ($stmt->num_rows == 1) { // If the user exists
 					$stmt->bind_result($password);
 					$stmt->fetch();
-					$login_check = hash('sha512', $password . $user_browser);
-	 
-					if ($login_check == $login_string) {
+					//validate password
+					if ($login_string == password_hash($password, DEFAULT_PASSWORD)) {
 						return true; // Logged In
 		}	}	}	}
 		return false; //Not Logged in
