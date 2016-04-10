@@ -1,22 +1,24 @@
 function registration() {
-	var form = document.forms["registration"];
+	
 	//Validate Username
 	var re = /^\w+$/;
-	if(!re.test(form.username.value)) {
+	var username = document.forms["registration"]["username"];
+	if(!re.test(username.value)) {
 		alert("Username may only contain letters, numbers and underscores");
-		form.username.focus();
+		username.focus();
 		return false;
 	}
 	//Validate Password
-	if (form.password.value.length < 6) {
+	var password = document.forms["registration"]["password"];
+	if (password.value.length < 6) {
 		alert("Password must at least contain 6 characters");
-		form.password.focus();
+		password.focus();
 		return false;
 	}
 	//Validate Confirmation
-	if (form.password.value != form.confirmation.value) {
+	if (password.value != document.forms["registration"]["confirmation"].value) {
 		alert("Password does not match its confirmation");
-		form.password.focus();
+		password.focus();
 		return false;
 	}
 	return true;
