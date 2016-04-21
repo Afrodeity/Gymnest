@@ -1,51 +1,59 @@
 <?php
-	/*
+	include_once 'functions.php';
 	start_session();
-	
+
 	if(check_login($mysqli) == true) {
 		header('Location: ./dashboard/dashboard.html');
 	}
-	*/
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
-
 <title>Portal</title>
 <link rel="stylesheet" type="text/css" href="./stylesheets/portal.css" />
-<script src="/js/forms.js"></script>
+<script src="./js/functions.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){   
+	var min = 3;
+	$('#signup-username').keyup(function(){  
+		if($(this).val().length < min){    
+			$('#check').html('');
+		}else{
+			$('#check').html('...');  
+			username_check($(this).val());  
+		}  
+	});  
+
+});
+</script>
 </head>
 
-<body>
-	<!--
-	<div class="error">
-		<?php if (!emtpy($error_msg)) { echo $error_msg;} //display errors?>
-	</div>
-	-->
+<body>	
 	<div class="perspective">
 		<!--Hidden Tab Selector Radio Buttons-->
 		<input type="radio" name="tabs" id="top-tab">
 		<input type="radio" name="tabs" id="front-tab">
 		<input type="radio" name="tabs" id="bottom-tab"> 
-		<!-------------------------------------->
+		<!--*******************************************************-->
 		<div class="cube">
 			<div class="tab">
-				<form method="post" name="registration" action="register.php" onsubmit="return registration()">
+				<form method="post" name="registration" action="register.php" onSubmit="return validateRegistration()">
 					<div class="form-field">
 						<strong>Specifiy your account type</strong>
 						<div class="selection">
-							<input id="signup-gymnast" name="role" type="radio" required>
+							<input id="signup-gymnast" name="role" type="radio" value="gymnast" required>
 							<label for="signup-gymnast">Gymnast</label>
 							
-							<input id="signup-trainer" name="role" type="radio" required>
+							<input id="signup-trainer" name="role" type="radio" value="trainer" required>
 							<label for="signup-trainer">Trainer</label>
 							
-							<input id="signup-other" name="role" type="radio" required>	
+							<input id="signup-other" name="role" type="radio" value="other" required>	
 							<label for="signup-other">Other</label>	
 						</div>
 					</div>
-					<div class="form-field" id="signup">
+					<div class="form-field">
 					  <label for="signup-first-name"><span class="hidden">First Name</span></label>
 					  <input id="signup-first-name" name="first-name" type="text" placeholder="First Name" required>
 					</div>
@@ -56,7 +64,7 @@
 					</div>
 
 					<div class="form-field">
-					  <label for="signup-username"><span>Username</span></label>
+					  <label for="signup-username"><span>Username</span></label><div id="check"></div>
 					  <input id="signup-username" name="username" type="text" placeholder="Username" required>
 					</div>
 
@@ -74,47 +82,47 @@
 			    </form>
 			  
 				<div class="bottom">
-					<label id="login" for="front-tab">Log In</label>
+					<label class="login" for="front-tab">Log In</label>
 				</div>
  
 			</div>
-			<!--------------------------------------------------------->
+			<!--*******************************************************-->
 			<div class="tab">
 				<!--Up Arrow-->
 				<div class="top">
-					<label id="signup" for="top-tab">Sign Up</label>
+					<label class="signup" for="top-tab">Sign Up</label>
 				</div>
 				
-				<form method="post" action="login.php" enctype="multipart/form-data" onsubmit="return login()">
+				<form method="post" action="login.php" name="login" onsubmit="return validateLogin()">
 					<div class="form-field">
-						<label for="signup-username">
-						<span class="hidden">Username</span>
+						<label for="login-username">
+							<span class="hidden">Username</span>
 						</label>
-						<input id="signup-username" type="text"
+						<input id="login-username" type="text"
 						placeholder="Username" required>
 					</div>
 					
 					<div class="form-field">
-						<label for="signup-password">
-						<span class="hidden">Password</span>
+						<label for="login-password">
+							<span class="hidden">Password</span>
 						</label>
-						<input id="signup-password" type="password"
+						<input id="login-password" type="password"
 						placeholder="Password" required>
 					</div>
 					<div class="form-field">
-					  <input type="button" value="Enter">
+					  <input type="submit" value="Enter">
 					</div>
 				</form>
 				<!--Down Arrow Button-->
 				<div class="bottom">
-					<label id="explore" for="bottom-tab">Explore</label>
+					<label class="explore" for="bottom-tab">Explore</label>
 				</div>	
 			</div>
-			<!--------------------------------------------------------->
+			<!--*******************************************************-->
 			<div class="tab">
 				<!--Up Arrow Button-->
 				<div class="top">
-					<label id="login" for="front-tab">Log In</label>
+					<label class="login" for="front-tab">Log In</label>
 				</div>
 
 				<h2>Discover <strong>Gym</strong>Nest</h2>

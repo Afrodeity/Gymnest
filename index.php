@@ -28,7 +28,7 @@
 <?php
     // Retrieve Database Information	
 	define('__ROOT__', dirname(dirname(__FILE__)));
-	require_once __ROOT__.'/config.php';
+	require_once __ROOT__.'/Gymnest/config.php';
 	echo 'config.php accessed'."</br>";
     try { //Establish Database Connection
 		$connection = new PDO('mysql:host='.$dbHost.';dbname='.$db, $dbUsername, $dbPassword);

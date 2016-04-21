@@ -1,9 +1,9 @@
-<!doctype xhtml>
+<!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
 <title>Dashboard</title>
-<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.3.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script>
 	var menu = false;
 	function toggle() {
@@ -26,7 +26,7 @@
         </div>
     </div>
 	
-	<?php if (check_login($mysqli) == true) : ?>
+<!--ADD CHECK LOGIN SECTION HERE-->
 	
 		<div id="container">
 			<div class="sidebar">
@@ -51,12 +51,6 @@
 				</div>
 			</div>
 		</div>
-		
-	<?php else : ?>
-		
-		<p><span="error">Log in from the <strong>Gym</strong>nest <a href="gymnest.azurewebsites.net/portal">portal</a> to access your account.</span></p>
-	
-	<?php endif; ?>
 </div>
 </body>
 </html>

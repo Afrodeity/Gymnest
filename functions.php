@@ -5,11 +5,12 @@
 		$session_name = 'session';
 		$secure = true;
 		$httponly = true; //block JavaScript session id access
-		
+		/*
 		if (ini_set('session.use_only_cookies', 1) == FALSE) {
-			header("Location: ../error.php?err=Could not initiate a safe session (ini_set)");
+			echo "Could not establish a safe session.";
 			exit();
 		}
+		*/
 		//Get current cookie parameters
 		$cookie_params = session_get_cookie_params();
 		session_set_cookie_params(
@@ -22,6 +23,12 @@
 		session_name($session_name);
 		session_start();
 		session_regenerate_id(true);
+	}
+	
+	function end_session() {
+		session_start();
+		unset($_SESSION['username']);
+		unset($_SESSION['password']);
 	}
 	
 	function login($username, $password, $mysqli) {
@@ -88,8 +95,8 @@
 						return true; // Logged In
 		}	}	}	}
 		return false; //Not Logged in
-	}	
-
+	}
+	
 	function esc_url($url) {
 		if ('' == $url) {
 			return $url;
@@ -115,4 +122,13 @@
 		} else {
 			return $url;
 		}
+	}
+	
+	function get_array($query) {
+		$rows = array();
+		$result = mysqli_query($mysqli, $query);
+		while ($row = mysqli_fetch_assoc($result)) {
+			$rows[] = $row;
+		}
+		return $rows;
 	}

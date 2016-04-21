@@ -31,11 +31,11 @@ input[name="tabs"] {
     cursor: pointer;
     width: 40px;
     border-radius: 10px; }
-  .top label#signup, .bottom label#signup {
+  .top .signup, .bottom .signup {
     background: #06D6A0; }
-  .top label#login, .bottom label#login {
+  .top .login, .bottom .login {
     background: #1B9AAA; }
-  .top label#explore, .bottom label#explore {
+  .top .explore, .bottom .explore {
     background: #EF476F; }
 
 .bottom {
